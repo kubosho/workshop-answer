@@ -2,15 +2,18 @@ const http = require('http')
 const args = process.argv
 
 http.get(args[2], response => {
+    let result = ''
+    
     response.setEncoding('utf8')
     response
         .on('data', data => {
-            console.log(data)
+            result += data
         })
         .on('error', err => {
             console.log(err)
         })
         .on('end', () => {
-            // nothing
+            console.log(result.length)
+            console.log(result)
         })
 })
