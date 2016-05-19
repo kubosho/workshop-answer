@@ -1,7 +1,16 @@
-var filteredLs = require('./filteredLs')
-var dirname = process.argv[2]
-var ext = process.argv[3]
+const http = require('http')
+const args = process.argv
 
-filteredLs(dirname, ext, (err, filelist) => {
-    filelist.forEach(file => console.log(file))
+http.get(args[2], response => {
+    response.setEncoding('utf8')
+    response
+        .on('data', data => {
+            console.log(data)
+        })
+        .on('error', err => {
+            console.log(err)
+        })
+        .on('end', () => {
+            // nothing
+        })
 })
