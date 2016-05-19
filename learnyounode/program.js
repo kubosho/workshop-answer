@@ -1,6 +1,12 @@
 var fs = require('fs')
-var file = process.argv[2]
+var path = require('path')
+var dir = process.argv[2]
+var ext = `.${process.argv[3]}`
 
-fs.readFile(file, 'utf8', (err, contents) => {
-    console.log(contents.split('\n').length - 1)
+fs.readdir(dir, (err, filenames) => {
+    filenames.filter(file => {
+        if (path.extname(file) === ext) {
+            console.log(file)
+        }
+    })
 })
