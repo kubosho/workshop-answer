@@ -1,0 +1,15 @@
+{
+  "name": "learnyounode",
+  "version": "0.1.0",
+  "description": "",
+  "main": "filteredLs.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "kubosho <ta2@o2p.jp>",
+  "license": "MIT",
+  "dependencies": {
+    "through2-map": "^2.0.0"
+  }
+}
