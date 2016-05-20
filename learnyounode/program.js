@@ -1,30 +1,22 @@
-const http = require('http')
+const net = require('net')
 const args = process.argv
 
-function fetchData(url) {
-    const data = []
+function zeroFill(num) {
+    if (num < 10) {
+        return `0${num}`
+    }
     
-    return new Promise((resolve, reject) => {
-        http.get(url, response => {
-            if (response.statusCode < 200 || response.statusCode > 299) {
-                reject(new Error(`ページの取得に失敗しました。ステータスコード: ${response.statusCode}`))
-            }
-            response.on('data', chunk => data.push(chunk))
-            response.on('error', err => reject(err))
-            response.on('end', () => resolve(data.join('')))
-        })
-    })
+    return num
 }
 
-const funcs = []
-for (let i = 2, l = args.length; i < l; i++) {
-    funcs.push(fetchData(args[i]))
+function writeDateTime(socket) {
+    const date = new Date()
+    const formatDate = `${date.getFullYear()}-${zeroFill(date.getMonth() + 1)}-${zeroFill(date.getDate())}`
+    const formatTime = `${zeroFill(date.getHours())}:${zeroFill(date.getMinutes())}`
+
+    socket.write(`${formatDate} ${formatTime}`)
+    socket.end('\n')
 }
 
-Promise
-    .all(funcs)
-    .then(data => {
-        for (let i = 0, l = data.length; i < l; i++) {
-            console.log(data[i])
-        }
-    })
+const server = net.createServer(writeDateTime)
+server.listen(args[2])
