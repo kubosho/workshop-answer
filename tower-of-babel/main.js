@@ -1,8 +1,8 @@
-import {PI, sqrt, square} from './math'
+import math from './math'
 
 const arg1 = process.argv[2]
 const arg2 = process.argv[3]
 
-console.log(PI)
-console.log(sqrt(+arg1))
-console.log(square(+arg2))
+console.log(math.PI)
+console.log(math.sqrt(+arg1))
+console.log(math.square(+arg2))
