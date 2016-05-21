@@ -9,6 +9,7 @@
   "keywords": [],
   "author": "kubosho <ta2@o2p.jp>",
   "license": "MIT",
+  "repository": "git@github.com:kubosho/workshop-answer.git",
   "dependencies": {
     "@linclark/pkg": "^1.0.2"
   }
